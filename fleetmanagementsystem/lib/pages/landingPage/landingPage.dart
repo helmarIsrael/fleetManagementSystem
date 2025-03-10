@@ -21,19 +21,19 @@ class LandingPage extends StatelessWidget {
           child: ListView(
             children: [
               ListTile(
-                title: Text("Job Orders"),
+                title: Text("Find Workers & Jobs"),
               ),
               ListTile(
-                title: Text("Maps")
+                title: Text("Repair Request Map")
               ),
               ListTile(
-                title: Text("Order History"),
+                title: Text("Service History"),
               )
             ],
           ),
         ),
         body: Center(
-          child: Text('Hello World!'),
+          child: Text('Insert Dashboard here'),
         ),
       );
   }

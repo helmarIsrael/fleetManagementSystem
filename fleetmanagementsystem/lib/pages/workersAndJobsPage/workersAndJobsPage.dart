@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 
-class WorkersAndJobsPage extends StatelessWidget {
+class WorkersAndJobsPage extends StatefulWidget {
+  @override
+  State<WorkersAndJobsPage> createState() => _WorkersAndJobsPageState();
+}
+
+class _WorkersAndJobsPageState extends State<WorkersAndJobsPage> {
+  final MapController _mapController = MapController();
   @override
   Widget build(BuildContext context){
     
@@ -9,43 +17,35 @@ class WorkersAndJobsPage extends StatelessWidget {
       appBar: AppBar(
             title: const Text('Fleet Management System'),
           ),
-      body: OSMFlutter( 
-        controller:MapController(
-          initMapWithUserPosition: UserTrackingOption(
-            enableTracking: true,),
-        ),
-        osmOption: OSMOption(
-              userTrackingOption: UserTrackingOption(
-              enableTracking: true,
-              unFollowUser: false,
+      body: Stack(
+        children: [
+          FlutterMap(
+            mapController: _mapController,
+            options: MapOptions(
+              initialCenter: LatLng(0, 0),
+              initialZoom: 2,
+              minZoom: 0,
+              maxZoom: 18
             ),
-            zoomOption: ZoomOption(
-                  initZoom: 8,
-                  minZoomLevel: 3,
-                  maxZoomLevel: 19,
-                  stepZoom: 1.0,
-            ),
-            userLocationMarker: UserLocationMaker(
-                personMarker: MarkerIcon(
-                    icon: Icon(
-                        Icons.location_history_rounded,
-                        color: Colors.red,
-                        size: 48,
-                    ),
+            children: [
+               TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                maxZoom: 19,
+              ),
+              CurrentLocationLayer(
+                style: LocationMarkerStyle(
+                  marker: DefaultLocationMarker(
+                    child: Icon(Icons.location_pin, color: Colors.red),
+                  ),
+                  markerSize: Size(35, 35),
+                  markerDirection: MarkerDirection.heading
                 ),
-                directionArrowMarker: MarkerIcon(
-                    icon: Icon(
-                        Icons.double_arrow,
-                        size: 48,
-                    ),
-                ),
-            ),
-            roadConfiguration: RoadOption(
-                    roadColor: Colors.yellowAccent,
-            ),
-            
-        )
-    ),
+              ),
+              
+            ],
+          ),
+        ],
+      )
     );
   }
 }

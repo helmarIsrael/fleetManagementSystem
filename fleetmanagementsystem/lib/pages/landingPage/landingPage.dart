@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fleetmanagementsystem/pages/workersAndJobsPage/workersAndJobsPage.dart';
 
 class LandingPage extends StatelessWidget {
   @override
@@ -20,8 +21,12 @@ class LandingPage extends StatelessWidget {
         drawer: Drawer(
           child: ListView(
             children: [
+              DrawerHeader(
+                child: Text("Hello, User."),
+              ),
               ListTile(
                 title: Text("Find Workers & Jobs"),
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WorkersAndJobsPage())),
               ),
               ListTile(
                 title: Text("Repair Request Map")

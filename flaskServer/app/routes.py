@@ -104,7 +104,9 @@ def client_worker_distance():
 
                 worker_distances.append({
                     'worker_id': r[0],
-                    'distance': distance
+                    'distance': distance,
+                    'latitude': r[1],
+                    'longitude': r[2]
                 })
             
             else:

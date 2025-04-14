@@ -143,7 +143,7 @@ class _WorkersAndJobsPageState extends State<WorkersAndJobsPage> {
               // If data is fetched, display it in your list
               else if (snapshot.hasData) {
                 final package = snapshot.data as List<dynamic>;
-                // fetchAndCreateRoute(data, package);
+                fetchAndCreateRoute(data, package);
                 return ListView.builder(
                   itemCount: package.length,
                   itemBuilder: (context, index) {
@@ -176,11 +176,11 @@ class _WorkersAndJobsPageState extends State<WorkersAndJobsPage> {
       encodedPolyline,
     );
 
-    List<LatLng> _route =
+    List<LatLng> route =
         decodedPoints
             .map((point) => LatLng(point.latitude, point.longitude))
             .toList();
-    return _route;
+    return route;
   }
 
   Future<void> fetchAndCreateRoute(

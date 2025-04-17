@@ -143,6 +143,7 @@ class _WorkersAndJobsPageState extends State<WorkersAndJobsPage> {
               // If data is fetched, display it in your list
               else if (snapshot.hasData) {
                 final package = snapshot.data as List<dynamic>;
+                _polylineRoutes.clear();
                 fetchAndCreateRoute(data, package);
                 return ListView.builder(
                   itemCount: package.length,
@@ -203,7 +204,7 @@ class _WorkersAndJobsPageState extends State<WorkersAndJobsPage> {
           Polyline(
             points: _decodePolyline(encodedPolyline),
             strokeWidth: 5,
-            color: Colors.green,
+            color: getRandomColor(),
           ),
         );
       } else {

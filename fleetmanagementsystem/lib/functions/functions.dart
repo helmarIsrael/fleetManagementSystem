@@ -1,6 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fleetmanagementsystem/services/apiUrl.dart';
+import 'dart:math';
+import 'package:flutter/material.dart';
+
 
 Future<List> fetchWorkerLocation() async {
   try {
@@ -70,3 +73,14 @@ Future<List<dynamic>> fetchClientAndWorkerDistance(
     return [{}];
   }
 }
+
+Color getRandomColor() {
+  final random = Random();
+  return Color.fromARGB(
+    255,                         // Full opacity
+    random.nextInt(256),         // Red: 0–255
+    random.nextInt(256),         // Green: 0–255
+    random.nextInt(256),         // Blue: 0–255
+  );
+}
+
